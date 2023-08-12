@@ -16,6 +16,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.navigationincompose.AUTHENTICATION_ROUTE
+import com.example.navigationincompose.Person
 import com.example.navigationincompose.Screen
 
 
@@ -29,7 +30,12 @@ fun HomeScreen(
     ){
         Text(
             modifier = Modifier.clickable {
+                val person = Person(firstName = "Hi!!!" , secondName = "From other side")
                 //navHostController.navigate(route = Screen.Detail.passId(5)) to call for single value
+                navHostController.currentBackStackEntry?.savedStateHandle?.set(
+                    key= "person",
+                    value = person
+                )
                 navHostController.navigate(route = Screen.Detail.passNameAndId(10, "IamStupid"))
             },
             text = "Home",
